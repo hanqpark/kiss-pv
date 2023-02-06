@@ -45,9 +45,12 @@
                   else %}
                   <a
                     href="#"
-                    onclick="window.open('./static/img/crawl/{{key}}_{{monthly_port['연월'][i]}}.png' ,'popup', 'width=800, height=600'); return false;"
-                    >{{monthly_port[key][i]}}{%if key != '연월'%}%{% endif %}</a
+                    onclick="window.open('./static/img/crawl/{{key}}_{{monthly_port['연월'][i]}}.jpg'
+                    ,'popup', 'width=800, height=600'); return false;"
                   >
+                    {{monthly_port[key][i]}}{%if key != '연월'%}%{% endif %}
+                  </a>
+
                   {% endif %}
                 </td>
                 {% endfor %}

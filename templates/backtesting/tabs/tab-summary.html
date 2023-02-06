@@ -7,38 +7,37 @@
         <h5 class="m-0 font-weight-bold text-primary">Portfolio Outline</h5>
       </div>
       <!-- Card Body -->
-      <div class="row">
-        <div class="card-body col-xl-4 col-lg-5 chart-pie">
-          <canvas id="doughnut-chart"></canvas>
-        </div>
-        <div class="card-body col-xl-8 col-lg-7">
-          <div class="table-responsive">
-            <table
-              class="table table-bordered"
-              id="dataTable"
-              width="100%"
-              cellspacing="0"
-            >
-              <thead>
-                <tr>
-                  <th>종목번호</th>
-                  <th>종목이름</th>
-                  <th>상장일</th>
-                  <th>비율</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for i in range(outline['ticker'] | length) %}
-                <tr>
-                  <td>{{outline['ticker'][i]}}</td>
-                  <td>{{outline['name'][i]}}</td>
-                  <td>{{outline['start_date'][i]}}</td>
-                  <td>{{outline['ratio'][i]}}%</td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
+
+      <div class="card-body chart-pie" style="width: 500px">
+        <canvas id="doughnut-chart"></canvas>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            class="table table-bordered"
+            id="dataTable"
+            width="100%"
+            cellspacing="0"
+          >
+            <thead>
+              <tr>
+                <th>종목번호</th>
+                <th>종목이름</th>
+                <th>상장일</th>
+                <th>비율</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in range(outline['ticker'] | length) %}
+              <tr>
+                <td>{{outline['ticker'][i]}}</td>
+                <td>{{outline['name'][i]}}</td>
+                <td>{{outline['start_date'][i]}}</td>
+                <td>{{outline['ratio'][i]}}%</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

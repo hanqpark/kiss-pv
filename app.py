@@ -1,8 +1,8 @@
-import os.path
 import pandas as pd
+from os.path import isfile
 from datetime import datetime
 from collections import defaultdict
-from flask import Flask, session, render_template, redirect, request, url_for 
+from flask import Flask, session, render_template, redirect, request, url_for , send_file
 from utils.rebalancing import rebalance
 from utils.quant import quanting
 from utils.crawl import crawl_news
@@ -157,8 +157,8 @@ def quant():
         return render_template("backtesting/quant.html")
 
 
-@application.route("/rebalancing-korea", methods=['GET', 'POST'])
-def rebalancing_korea():
+@application.route("/rebalancing", methods=['GET', 'POST'])
+def rebalancing():
     if request.method == "POST":
         # json 형식의 input value 생성
         info = defaultdict(list)
@@ -166,7 +166,7 @@ def rebalancing_korea():
             info[k] = v
         d_port, d_label, month_dict, m_label, year_dict, y_label, outline, summary, metrics = data_postprocess(info)
         return render_template(
-            "backtesting/rebalancing-korea.html",
+            "backtesting/rebalancing.html",
             daily_port=d_port, 
             daily_label=d_label,
             monthly_port=month_dict,
@@ -178,23 +178,10 @@ def rebalancing_korea():
             metrics=metrics
         )
     else:
-        return render_template("backtesting/rebalancing-korea.html")
+        return render_template("backtesting/rebalancing.html")
 
-
-@application.route("/rebalancing-usa", methods=['GET', 'POST'])
-def rebalancing_usa():
-    if request.method == "POST":
-        info = dict(request.form)
-        return render_template("backtesting/rebalancing-usa.html", info=info)
-    else:
-        return render_template("utilities/blank.html")
 
 '''
-@application.route("/portfolio-guru")
-def guru():
-    return render_template("portfolio/guru.html")
-'''
-
 @application.route("/ray-dalio", methods=['GET', 'POST'])
 def ray():
     portfolio={
@@ -309,7 +296,7 @@ def forty_sixty():
         )
     else:
         return render_template("utilities/blank.html",)
-
+'''
 
 @application.route("/portfolio-kis", methods=['GET', 'POST'])
 def kis():
@@ -403,12 +390,13 @@ def samsung():
             companies = ['HMM', 'LG전자', 'NAVER', 'POSCO홀딩스', '삼성전기', '솔루엠', '아모레G', '엔씨소프트', '이오테크닉스', '호텔신라']
         )
         
-@application.route("/static/img/crawl/<img>.png")
+@application.route("/static/img/crawl/<img>.jpg")
 def baek(img):
     company, date = img.split('_')
     year, month = date.split('-')
-    crawl_news(company, year, month)
-    return render_template('backtesting/rebalancing-korea.html')
+    if not isfile(f"static/img/crawl/{img}.jpg"):
+        crawl_news(company, year, month)
+    return send_file(f"static/img/crawl/{img}.jpg", mimetype='image/jpg')
 
 
 @application.route("/metrics")
@@ -425,54 +413,13 @@ def support():
 def search():
     if request.method == 'GET':
         name = request.args.get('company')
-        img = f'static/img/crawl/{name}_{year}-{month}.png' if os.path.isfile(f'static/img/crawl/{name}_{year}-{month}.png') else crawl_news(name)
         ticker = get_ticker(name)
-        return render_template("utilities/search.html", name=name, ticker=ticker, url=img)
-    
-
-@application.route("/popup")
-def popup():
-    return render_template("users/user-profile.html")
-    
-    
-@application.route("/profile")
-def profile():
-    return render_template("users/user-profile.html")
-
-
-@application.route("/holdings")
-def holdings():
-    return render_template("users/user-holdings.html")
-
-
-@application.route("/login")
-def login():
-    return render_template("users/before-login.html")
-
-
-@application.route("/register")
-def register():
-    return render_template("users/before-register.html")
-
-
-@application.route("/profile/modify")
-def user_modify():
-    return render_template("users/user-modify.html")
-
-
-@application.route("/forgot-password")
-def forgot_password():
-    return render_template("users/before-password.html")
+        return render_template("utilities/search.html", name=name, ticker=ticker)
 
 
 @application.route("/404")
 def page_not_found():
     return render_template("utilities/404.html")
-
-
-@application.route("/blank")
-def blank():
-    return render_template("utilities/blank.html")
 
 
 @application.route("/reference")
@@ -496,18 +443,18 @@ if __name__ == "__main__":
     ks_df = pd.read_csv('utils/data/korea_stock.csv')
     
     # ETF
-    # ke_df = pd.read_csv('utils/data/korea_etf.csv')
+    ke_df = pd.read_csv('utils/data/korea_etf.csv')
     
     # 퀀트
-    # fs_path = 'utils/data/재무제표데이터.xlsx'
-    # fs_df = get_finance_data(fs_path)
-    # fr_path = 'utils/data/재무비율데이터.xlsx'
-    # fr_df = get_finance_data(fr_path)
-    # invest_path = 'utils/data/투자지표데이터.xlsx'
-    # invest_df = get_finance_data(invest_path)
-    # price_path = 'utils/data/가격데이터.csv'
-    # price_df = pd.read_csv(price_path)
-    # price_df = price_df.set_index('Unnamed: 0')
-    # price_df.index = [price_df.index[i][:10] for i in range(len(price_df['060310']))]
-    # price_df.index = pd.to_datetime(price_df.index)
+    fs_path = 'utils/data/재무제표데이터.xlsx'
+    fs_df = get_finance_data(fs_path)
+    fr_path = 'utils/data/재무비율데이터.xlsx'
+    fr_df = get_finance_data(fr_path)
+    invest_path = 'utils/data/투자지표데이터.xlsx'
+    invest_df = get_finance_data(invest_path)
+    price_path = 'utils/data/가격데이터.csv'
+    price_df = pd.read_csv(price_path)
+    price_df = price_df.set_index('Unnamed: 0')
+    price_df.index = [price_df.index[i][:10] for i in range(len(price_df['060310']))]
+    price_df.index = pd.to_datetime(price_df.index)
     application.run(host='0.0.0.0', port="8080")

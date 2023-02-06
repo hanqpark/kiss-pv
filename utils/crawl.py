@@ -14,6 +14,8 @@ from bs4 import BeautifulSoup
 from collections import Counter
 from itertools import combinations
 from konlpy.tag import Kkma, Mecab
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib import font_manager, rc
 
@@ -407,11 +409,10 @@ def crawl_news(name, year, month):
     #nodssize=map(lambda x: x*500,nods)
     #sizes=[list(nx.degree_centrality(G).values())*500 for node in G]
     #노드 크기는 단어별 중심도 기준으로 설정
-    url = f'static/img/crawl/{name}_{year}-{month}.png'
+    url = f'static/img/crawl/{name}_{year}-{month}.jpg'
     nx.draw_networkx(G, pos, node_color=color_map, edge_color='grey',node_size=sizes_m, font_family='AppleGothic')
     plt.axis('off') # turn off axis 
     plt.savefig(url, dpi=300)
-    return url
 
 if __name__ == "__main__":
     crawl_news("삼성전자")
