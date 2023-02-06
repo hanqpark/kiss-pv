@@ -1,0 +1,107 @@
+<div id="tab_monthlyReturns" class="tab-content">
+  <div class="my-3 result-section">
+    <!-- Bar Chart -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h5 class="m-0 font-weight-bold text-primary">Monthly Return Rate</h5>
+      </div>
+      <div class="card-body">
+        <div class="chart-bar">
+          <canvas id="bar-chart__month"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h5 class="m-0 font-weight-bold text-primary">Monthly Returns</h5>
+      </div>
+
+      {% set baekKey=[0] %}
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            class="table table-bordered"
+            id="dataTable"
+            width="100%"
+            cellspacing="0"
+          >
+            <thead>
+              <tr>
+                {% for key in monthly_port.keys() %}
+                <th style="text-align: center">{{key}}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            {% for key in monthly_port.keys() %} {% if key != '연월' and key !=
+            '포트폴리오' %} {% set _ = baekKey.append(key) %} {% endif %} {%
+            endfor %}
+            <tbody>
+              {% for i in range(monthly_port['포트폴리오'] | length) %}
+              <tr>
+                {% for key in monthly_port.keys() %}
+                <td style="text-align: right">
+                  {% if key=='연월' or key=='포트폴리오' %}
+                  {{monthly_port[key][i]}}{%if key != '연월'%}%{% endif%} {%
+                  else %}
+                  <a
+                    href="#"
+                    onclick="window.open('./static/img/crawl/{{key}}_{{monthly_port['연월'][i]}}.png' ,'popup', 'width=800, height=600'); return false;"
+                    >{{monthly_port[key][i]}}{%if key != '연월'%}%{% endif %}</a
+                  >
+                  {% endif %}
+                </td>
+                {% endfor %}
+              </tr>
+              {% endfor%}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .chart-bar {
+    height: auto;
+  }
+</style>
+<script src="static/vendor/chart.js/Chart.min.js"></script>
+
+<script>
+    new Chart(document.getElementById("bar-chart__month"), {
+      type: "bar",
+      data: {
+        labels: {{monthly_label | tojson}},
+        datasets: [
+          {
+            label: "Portfolio",
+            backgroundColor: "#3e95cd",
+            data: {{monthly_port | tojson}}['포트폴리오'],
+          },
+        ],
+      },
+      scales: {
+      yAxes: [
+        {
+          stacked: true,
+          gridLines: {
+            display: true,
+            color: "rgba(255,99,132,0.2)"
+          },
+          ticks: {
+            suggestedMax: 100,
+            suggestedMin: -10
+          }
+        }
+      ],
+      xAxes: [
+        {
+          gridLines: {
+            display: false
+          }
+        }
+      ]
+    }
+  });
+</script>

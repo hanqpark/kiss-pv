@@ -1,0 +1,41 @@
+<div id="tab_summary" class="tab-content current">
+  <div class="my-3 result-section">
+    <!-- Performance Summary -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h5 class="m-0 font-weight-bold text-primary">Performance Summary</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            class="table table-bordered"
+            id="dataTable"
+            width="100%"
+            cellspacing="0"
+          >
+            <thead>
+              <tr style="text-align: center">
+                <th>초기자산</th>
+                <th>주식포트폴리오</th>
+                <th>현금포트폴리오</th>
+                <th>종합포트폴리오</th>
+                <th>최고의 해</th>
+                <th>최악의 해</th>
+                <th>연평균성장률</th>
+                <th>최대손실낙폭</th>
+                <th>샤프비율</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for s in summary %}
+                <td style="text-align: right">{{s}}</td>
+                {% endfor%}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

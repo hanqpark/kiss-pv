@@ -1,0 +1,207 @@
+{% extends 'base.html' %} {% block contents %}
+
+<!-- 조건 입력 부분 -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h3 class="m-0 font-weight-bold text-primary">{{title}}</h3>
+  </div>
+  <div class="card-body">
+    <form onsubmit="return validateForm(this)" method="POST" action="#results">
+      <!-- 시작연월 -->
+      <div class="condition_list">
+        <div class="condition_name">시작연월</div>
+        <div class="btn btn-light btn-icon-split year-box">
+          <select name="startYear">
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+          </select>
+          <span class="icon text-gray-600"> 년 </span>
+        </div>
+        <div class="btn btn-light btn-icon-split">
+          <select name="startMonth">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+          <span class="icon text-gray-600"> 월 </span>
+        </div>
+      </div>
+
+      <!-- 종료연월 -->
+      <div class="condition_list">
+        <div class="condition_name">종료연월</div>
+        <div class="btn btn-light btn-icon-split year-box">
+          <select name="endYear">
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+          </select>
+          <span class="icon text-gray-600"> 년 </span>
+        </div>
+        <div class="btn btn-light btn-icon-split">
+          <select name="endMonth">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+          <span class="icon text-gray-600"> 월 </span>
+        </div>
+      </div>
+
+      <!-- 리밸런싱 주기 -->
+      <div class="condition_list">
+        <div class="condition_name">리밸런싱 주기</div>
+        <select name="periods" class="btn btn-light text-gray-600">
+          <option value="everyYear">매년</option>
+          <option value="everySemiannual">매반기</option>
+          <option value="everyQuarter">매분기</option>
+          <option value="everyMonth">매월</option>
+        </select>
+      </div>
+
+      <!-- 초기자산 -->
+      <div class="condition_list">
+        <div class="condition_name">초기자산</div>
+        <div class="btn btn-light btn-icon-split">
+          <input
+            type="number"
+            name="moneyToStart"
+            min="0"
+            required
+            onkeyup="checkMoneyValue(this)"
+          />
+          <span class="icon text-gray-600"> 만원 </span>
+        </div>
+      </div>
+
+      <!-- 월적립금 -->
+      <div class="condition_list">
+        <div class="condition_name">월적립금</div>
+        <div class="btn btn-light btn-icon-split">
+          <input
+            type="number"
+            name="monthlySave"
+            min="0"
+            required
+            onkeyup="checkMoneyValue(this)"
+          />
+          <span class="icon text-gray-600"> 만원 </span>
+        </div>
+      </div>
+
+      <hr />
+
+      <div id="assets">
+        {% for name, ratio in portfolio.items() %}
+        <div class="btn btn-light btn-icon-split">
+          <span class="icon text-gray-600"> 종목 </span>
+          <div class="mt-1" name="ticker" style="width: 300px">{{name}}</div>
+        </div>
+        <div class="btn btn-light btn-icon-split">
+          <div class="mt-1" name="ratio" style="width: 50px">{{ratio}}</div>
+          <span class="icon text-gray-600"> % </span>
+        </div>
+        <p></p>
+        {% endfor %}
+      </div>
+      <input type="submit" class="btn btn-success" value="백테스팅" />
+    </form>
+  </div>
+</div>
+
+<!-- 조건 결과 출력 부분 -->
+{% if daily_label %}
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h3 class="m-0 font-weight-bold text-primary">리밸런싱 결과</h3>
+  </div>
+
+  <!-- Result Tabs -->
+  <div class="container">
+    <!-- Result Tab Navigation -->
+    <ul class="tabs">
+      <li class="tab-link current border-bottom-primary" data-tab="tab_summary">
+        Summary
+      </li>
+      <!-- <li class="tab-link" data-tab="tab_exposures">Exposures</li> -->
+      <li class="tab-link" data-tab="tab_metrics">Metrics</li>
+      <li class="tab-link" data-tab="tab_growthReturns">Growth Returns</li>
+      <li class="tab-link" data-tab="tab_annualReturns">Annual Returns</li>
+      <li class="tab-link" data-tab="tab_monthlyReturns">Monthly Returns</li>
+    </ul>
+
+    <!-- Result Tab - Summary -->
+    {% include 'backtesting/tabs/tab-summary.html' %}
+
+    <!-- Result Tab - Metrics  -->
+    {% include 'backtesting/tabs/tab-metrics.html' %}
+
+    <!-- Result Tab - Growth Returns -->
+    {% include 'backtesting/tabs/tab-growthreturns.html' %}
+
+    <!-- Result Tab- Annual Returns  -->
+    {% include 'backtesting/tabs/tab-annualreturns.html' %}
+
+    <!-- Result Tab- Monthly Returns  -->
+    {% include 'backtesting/tabs/tab-monthlyreturns.html' %}
+  </div>
+</div>
+
+{% endif %} {% endblock contents %}

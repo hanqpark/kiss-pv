@@ -1,0 +1,116 @@
+<div id="tab_summary" class="tab-content current">
+  <div class="my-3 result-section">
+    <!-- Portfolio Ratio -->
+    <div class="card shadow mb-4">
+      <!-- Card Header - Dropdown -->
+      <div class="card-header py-3">
+        <h5 class="m-0 font-weight-bold text-primary">Portfolio Outline</h5>
+      </div>
+      <!-- Card Body -->
+      <div class="row">
+        <div class="card-body col-xl-4 col-lg-5 chart-pie">
+          <canvas id="doughnut-chart"></canvas>
+        </div>
+        <div class="card-body col-xl-8 col-lg-7">
+          <div class="table-responsive">
+            <table
+              class="table table-bordered"
+              id="dataTable"
+              width="100%"
+              cellspacing="0"
+            >
+              <thead>
+                <tr>
+                  <th>종목번호</th>
+                  <th>종목이름</th>
+                  <th>상장일</th>
+                  <th>비율</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in range(outline['ticker'] | length) %}
+                <tr>
+                  <td>{{outline['ticker'][i]}}</td>
+                  <td>{{outline['name'][i]}}</td>
+                  <td>{{outline['start_date'][i]}}</td>
+                  <td>{{outline['ratio'][i]}}%</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Performance Summary -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h5 class="m-0 font-weight-bold text-primary">Performance Summary</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            class="table table-bordered"
+            id="dataTable"
+            width="100%"
+            cellspacing="0"
+          >
+            <thead>
+              <tr style="text-align: center">
+                <th>초기자산</th>
+                <th>월적립금</th>
+                <th>총투자금</th>
+                <th>최종자산</th>
+                <th>최고의 해</th>
+                <th>최악의 해</th>
+                <th>연평균성장률</th>
+                <th>최대손실낙폭</th>
+                <th>샤프비율</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for s in summary %}
+                <td style="text-align: right">{{s}}</td>
+                {% endfor%}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="static/vendor/chart.js/Chart.min.js"></script>
+<script>
+  new Chart(document.getElementById("doughnut-chart"), {
+    type: "doughnut",
+    data: {
+      labels: {{outline | tojson}}['name'],
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: [
+            "#3e95cd",
+            "#8e5ea2",
+            "#3cba9f",
+            "#e8c3b9",
+            "#c45850",
+            "#FF69B4",
+            "#DC143C",
+            "#FFEBCD",
+            "#00FF00",
+            "#00FFFF"
+          ],
+          data: {{outline | tojson}}['ratio'],
+        },
+      ],
+    },
+    options: {
+      title: {
+        display: true,
+      },
+    },
+  });
+</script>

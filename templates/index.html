@@ -1,0 +1,171 @@
+{% extends 'base.html' %} {% block contents %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+  <!--<h1 class="h3 mb-1 text-gray-800">KISS PV</h1>-->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h2 class="mb-1 font-weight-bold text-primary"><big>KISS Portfolio Visualizer</big></h2>
+        </div>
+        <div class="card-body">
+          KISS PV는 포트폴리오 분석을 위한 온라인 플랫폼입니다.
+          <br/>
+          <br/>
+          <li>투자자들이 포트폴리오 및 금융 상품들을 비교 및 분석할 때 정보에 입각한 현명한 결정을 내릴 수 있도록 도와줍니다. </li>
+          <br/>
+          <li>분석을 위한 정량적 툴로는 포트폴리오 모델링 및 백테스트, 요인 모델, 성과 분석 지표들이 있습니다.</li>
+        </div>
+      </div>
+<div class="row">
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div style = "margin-right: 50px;padding-bottom: 10px">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><p style = "text-align:center"><big>Backtesting</big></p></div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-calendar fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- Earnings (Annual) Card Example -->
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div style = "margin-right: 50px;padding-bottom: 10px">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><p style = "text-align:center"><big>추천 Portfolio</big></p></div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div style = "margin-right: 50px;padding-bottom: 10px">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><p style = "text-align:center"><big>Utilities</big></p></div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-comments fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Content Row -->
+  <div class="row">
+    <!-- Grow In Utility -->
+    <div class="col-md-4">
+      <div style = "margin-right: 50px;padding-bottom: 10px">
+      <div class="card position-relative">
+        <div class="card-header py-3">
+          <h5 class="m-0 font-weight-bold text-primary">
+            <p style = "text-align:center">Quant</p>
+          </h5>
+        </div>
+        <div class="card-body">
+            유명 퀀트 기반 투자 전략들을 활용하여 1년 단위 리밸런싱을 시행, 상위 20종목의 포트폴리오를 구성 및 종목마다 동일한 비중으로 투자.<br/>
+            </br>
+              <li>저평가 지표 조합함수(PER, PBR, PCR, PSR) 및 퀄리티 지표 (fscore, ROA) 종합순위 기준 상위 종목들에 투자</li></br>
+            <li>국내</li></br>
+            <li>미국</li></br>
+
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- Fade In Utility -->
+    <div class="col-md-4">
+      <div style = "margin-right: 50px;padding-bottom: 10px">
+      <div class="card position-relative">
+        <div class="card-header py-3">
+          <h5 class="m-0 font-weight-bold text-primary">
+            <p style = "text-align:center">Invest like Securities Firms</p>
+          </h5>
+        </div>
+        <div class="card-body">
+            (증권사 포트폴리오)</br>
+            </br>
+              대형 증권사들이 추천하는 종목들을 토대로 포트폴리오 구성, 인출 및 롤링 수익률과 리스크를 분석</br></br>
+              </br><li>한국투자증권</li></br>
+            <li>KB증권</li></br>
+            <li>삼성증권</li>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- Fade In Utility -->
+    <div class="col-md-4">
+      <div style = "margin-right: 50px;padding-bottom: 10px">
+      <div class="card position-relative">
+        <div class="card-header py-3">
+          <h5 class="m-0 font-weight-bold text-primary">
+            <p style = "text-align:center">Metrics</p>
+          </h5>
+        </div>
+        <div class="card-body">
+            백테스트 결과를 기반으로 계산된 성과 및 위험 지표들을 산출</br></br>
+            <li>기초 통계량</li></br>
+            <li>테일 리스크</li></br>
+            <li>성과 지표</li></br></br></br>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="col-md-4">
+      <div style = "margin-right: 50px;padding-bottom: 10px">
+      <div class="card position-relative">
+        <div class="card-header py-3">
+          <h5 class="m-0 font-weight-bold text-primary">
+            <p style = "text-align:center">Rebalancing</p>
+          </h5>
+        </div>
+        <div class="card-body">
+              개별적으로 구성한 포트폴리오에 대해 주기적 모델 기반 리밸런싱, 최종 평가액을 계산 및 백테스트</br></br>
+            <li>국내</li></br>
+            <li>미국</li></br></br></br></br></br></br></br></br>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Fade In Utility -->
+    <div class="col-md-4">
+      <div style = "margin-right: 50px;padding-bottom: 10px">
+      <div class="card position-relative">
+        <div class="card-header py-3">
+          <h5 class="m-0 font-weight-bold text-primary">
+            <p style = "text-align:center">Invest like GURU</p>
+          </h5>
+        </div>
+        <div class="card-body">
+            (투자의 대가)</br>
+            </br>
+              유명 투자자의 자산 배분 전략들을 토대로 포트폴리오를 구성 및 백테스트</br></br>
+              모델링 대상 포트폴리오들은 아래와 같음.</br></br>
+              </br><li>Ray Dalio All Seasons</li></br>
+            <li>Harry Browne Permanent Portfolio</li></br>
+            <li>주식 /채권 (60/40)</li>
+            <li>주식 /채권 (40/60)</li>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock contents %}

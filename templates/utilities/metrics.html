@@ -1,0 +1,541 @@
+{% extends 'base.html' %} {% block contents %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+  <h1 class="h2 mb-1 text-gray-800">Metrics</h1>
+  <br />
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h3 class="mb-1 font-weight-bold text-primary">기초통계량</h3>
+    </div>
+    <div class="card-body">
+      <a class="btn btn-primary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">산술평균</span>
+      </a>
+      <br />
+      <br />
+      <li>주어진 수의 합을 수의 개수로 나눈 값</li>
+      <br />
+      <br />
+      <a class="btn btn-primary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">조화평균</span>
+      </a>
+      <br />
+      <br />
+      <li>주어진 수들의 역수의 산술 평균의 역수</li>
+      <br />
+      <br />
+      <a class="btn btn-primary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">표준편차</span>
+      </a>
+      <br />
+      <br />
+      <li>통계집단의 분산의 정도 또는 자료의 산포도를 나타내는 수치</li>
+      <br />
+      <br />
+      <a class="btn btn-primary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">하방 표준편차</span>
+      </a>
+      <br />
+      <br />
+      <li>포트폴리오의 하방 위험을 나타내는 수치로 음의 수익률의 표준편차</li>
+      <br />
+      <br />
+      <a class="btn btn-primary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">상방 표준편차</span>
+      </a>
+      <br />
+      <br />
+      <li>양의 수익률로만 나타낸 표준편차</li>
+      <br />
+      <br />
+      <a class="btn btn-primary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">공분산</span>
+      </a>
+      <br />
+      <br />
+      <li>포트폴리오 수익률과 벤치마크의 선형 관계를 나타내는 값</li>
+      <br />
+      <br />
+      <a class="btn btn-primary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">상관계수</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        두 변수 사이의 통계적 관계를 표현하기 위해 특정한 상관 관계의 정도를
+        수치적으로 나타낸 계수
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-primary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">베타</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        포트폴리오의 위험을 나타내는 상대적인 지표로 벤치마크와의 상대적인
+        변동성 비율을 뜻함
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-primary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">알파</span>
+      </a>
+      <br />
+      <br />
+      <li>포트폴리오의 실제 수익률에서 기대 수익률을 뺀 값</li>
+      <br />
+      <br />
+    </div>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h3 class="mb-1 font-weight-bold text-primary">
+        <p style="color: green">테일 리스크</p>
+      </h3>
+    </div>
+    <div class="card-body">
+      <a class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-check"></i>
+        </span>
+        <span class="text">왜도</span>
+      </a>
+      <br />
+      <br />
+      <li>수익률 분포의 비대칭 정도를 측정하기 위한 지표</li>
+      <br />
+      <br />
+      <a class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">첨도</span>
+      </a>
+      <br />
+      <br />
+      <li>수익률 분포의 팻테일 정도를 측정하기 위한 지표</li>
+      <br />
+      <br />
+      <a class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">공왜도</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        벤치마크 대비 전략의 수익률 분포가 얼마나 왜도를 가지고 있는지 알고 싶을
+        떄 사용하는 지표
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">공첨도</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        공첨도는 어떤 두 수익률 데이터가 있을 때 벤치마크 대비 전략 수익률의
+        상대적인 첨도를 측정하기 위한 지표
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">낙폭</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        현재 가격이 전 고점과 비교했을 때 얼마만큼의 손실을 보이고 있는지
+        나타내는 지표
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">최대낙폭</span>
+      </a>
+      <br />
+      <br />
+      <li>백테스팅 기간 중 가장 큰 낙폭을 측정하기 위한 지표</li>
+      <br />
+      <br />
+      <a class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">낙폭기간</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        과거 낙폭을 경험했던 여러 구간들에서 전 고점을 회복하기 전까지 낙폭이
+        유지된 기간
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">최장낙폭기간</span>
+      </a>
+      <br />
+      <br />
+      <li>낙폭기간 중 가장 긴 기간을 알려주는 지표</li>
+      <br />
+      <br />
+      <a class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">역사적 VaR</span>
+      </a>
+      <br />
+      <br />
+      <li>과거부터 수익률을 나열했을 때 하위 1% 지점에 있는 수익률</li>
+      <br />
+      <br />
+      <a class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">분석적 VaR</span>
+      </a>
+      <br />
+      <br />
+      <li>정상적인 시장 상황 하에서 발생할 수 있는 최대 예상손실액</li>
+      <br />
+      <br />
+      <a class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">조건부 VaR</span>
+      </a>
+      <br />
+      <br />
+      <li>VaR를 초과하는 손실률들의 평균값</li>
+      <br />
+      <br />
+    </div>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h3 class="mb-1 font-weight-bold text-primary">
+        <p style="color: grey">성과 지표</p>
+      </h3>
+    </div>
+    <div class="card-body">
+      <a class="btn btn-secondary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-check"></i>
+        </span>
+        <span class="text">추적 오차</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        포트폴리오 수익률이 벤치마크의 수익률을 잘 추종하는지에 대한 수치로
+        초과수익률의 표준편차로 계산됨
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-secondary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">정보 비율</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        포트폴리오와 벤치마크의 수익률 간에 변동성 대비 초과수익률을 측정하는
+        지표
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-secondary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">샤프 비율</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        전략의 성과를 평가하기 위한 지표로 초과 수익률의 평균을 변동성으로 나눈
+        값으로 계산
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-secondary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">조정 샤프 비율</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        초과 수익률의 왜도와 첨도를 반영하여 테일 리스크가 반영된 샤프비율
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-secondary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">소르티노 비율</span>
+      </a>
+      <br />
+      <br />
+      <li>분모에 표준편차가 아닌 하방 표준편차를 적용한 성과 지표</li>
+      <br />
+      <br />
+      <a class="btn btn-secondary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">칼마 비율</span>
+      </a>
+      <br />
+      <br />
+      <li>최대낙폭 대비 전략의 초과수익률을 측정하는 지표</li>
+      <br />
+      <br />
+      <a class="btn btn-secondary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">트레이너 비율</span>
+      </a>
+      <br />
+      <br />
+      <li>위험 한 단위를 받고 얻은 초과성과가 얼마인지를 측정하는 성과지표</li>
+      <br />
+      <br />
+      <a class="btn btn-secondary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">VaR 대비 성과 비율</span>
+      </a>
+      <br />
+      <br />
+      <li>위험 지표 중 하나인 VaR 대비 수익의 비율을 나타내는 지표</li>
+      <br />
+      <br />
+      <a class="btn btn-secondary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">CVaR 대비 성과 비율</span>
+      </a>
+      <br />
+      <br />
+      <li>CVaR 대비 성과 비율</li>
+      <br />
+      <br />
+      <a class="btn btn-secondary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">승률</span>
+      </a>
+      <br />
+      <br />
+      <li>전체 매매 횟수 중 수익을 얻은 거래의 비율</li>
+      <br />
+      <br />
+      <a class="btn btn-secondary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">손익비</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        전략을 운용할 때 1회당 평균 손실 금액 대비 1회당 평균 이익 금액의 비율
+      </li>
+      <br />
+      <br />
+    </div>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h3 class="mb-1 font-weight-bold text-primary">
+        <p style="color: teal">재무 비율</p>
+      </h3>
+    </div>
+    <div class="card-body">
+      <a class="btn btn-info btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-check"></i>
+        </span>
+        <span class="text">PER</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        기업의 실적과 주가의 관계를 나타낸 지표로 주가를 주당 순이익으로 나눈 값
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-info btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">PBR</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        기업의 장부가치와 주가의 관계를 나타낸 지표로 주가를 주당 순자산으로
+        나눈 값
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-info btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">PSR</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        기업의 매출액과 주가의 관계를 나타낸 지표로 시가총액을 매출액으로 나눈
+        값
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-info btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">ROA</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        기업의 총 자산 대비 발생하는 이익을 측정하는 지표로 당기순이익을
+        자산총액으로 나누어 계산한 값
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-info btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">F-SCORE</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        기업의 가치를 평가하는 지표로 수익성, 안정성, 효율성의 항목에서 해당할
+        때마다 1점의 점수를 주는 방식으로 측정됨
+      </li>
+      <br />
+      <br />
+    </div>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h3 class="mb-1 font-weight-bold text-primary">
+        <p style="color: teal">방법론</p>
+      </h3>
+    </div>
+    <div class="card-body">
+      <a class="btn btn-info btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-check"></i>
+        </span>
+        <span class="text">리밸런싱</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        투자 과정에서 자산 배분 및 편입 비율을 당초 투자 비율대로 조정하는
+        것으로, 당 사이트에서는 주기적으로 시장 상황을 반영할 수 있다는 점에서
+        주기적 모델을 적용한 리밸런싱 기법을 사용합니다.
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-info btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">포트폴리오 백테스트</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        주식, ETF 등의 자산을 투자자가 원하는 비율에 따라 배정하여 만든
+        포트폴리오를 원하는 주기마다 리밸런싱하여 과거 수익률을 기반으로
+        백테스트를 진행합니다. 이 과정에서 세금은 적용되지 않습니다
+      </li>
+      <br />
+      <br />
+      <a class="btn btn-info btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+        </span>
+        <span class="text">퀀트 전략 백테스트</span>
+      </a>
+      <br />
+      <br />
+      <li>
+        투자자가 선호하는 재무 비율에 따라 우선순위를 부여하여 포트폴리오를
+        결정한 후, 1달 주기로 종목을 우선수위에 따라 종목을 교체하는 방식으로
+        이루어집니다. 이 과정에서 세금은 적용되지 않습니다
+      </li>
+      <br />
+      <br />
+    </div>
+  </div>
+
+  {% endblock contents %}
+</div>

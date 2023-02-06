@@ -1,0 +1,42 @@
+<div id="tab_drawdowns" class="tab-content">
+  <div class="my-3 result-section">
+    <!-- Portfolio Growth -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h5 class="m-0 font-weight-bold text-primary">Drawdowns</h5>
+      </div>
+      <div class="card-body">
+        <div class="chart-area">
+          <canvas id="line-chart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Chart.js Resources -->
+<script src="static/vendor/chart.js/Chart.min.js"></script>
+
+<!-- chart.js line chart code -->
+<script>
+  new Chart(document.getElementById("line-chart"), {
+    type: "line",
+    data: {
+      labels: {{ daily_label | tojson }},
+      datasets: [
+        {
+          data: {{ daily_port | tojson }},
+          label: "Portfolio",
+          borderColor: "#3e95cd",
+          fill: false,
+        },
+      ],
+    },
+    options: {
+      title: {
+        display: true,
+        text: "World population per region (in millions)",
+      },
+    },
+  });
+</script>

@@ -1,0 +1,94 @@
+<div id="tab_annualReturns" class="tab-content">
+  <div class="my-3 result-section">
+    <!-- Bar Chart -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h5 class="m-0 font-weight-bold text-primary">Annual Return Rate</h5>
+      </div>
+      <div class="card-body">
+        <div class="chart-bar">
+          <canvas id="bar-chart__annual"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h5 class="m-0 font-weight-bold text-primary">Annual Returns</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            class="table table-bordered"
+            id="dataTable"
+            width="100%"
+            cellspacing="0"
+          >
+            <thead>
+              <tr>
+                {% for key in annual_port.keys() %}
+                <th style="text-align: center">{{key}}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in range(annual_port['포트폴리오'] | length) %}
+              <tr>
+                {% for key in annual_port.keys() %}
+                <td style="text-align: right">
+                  {{annual_port[key][i]}} {%if key != '연도'%}%{% endif %}
+                </td>
+                {% endfor%}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .chart-bar {
+    height: auto;
+  }
+</style>
+<script src="static/vendor/chart.js/Chart.min.js"></script>
+<script>
+    new Chart(document.getElementById("bar-chart__annual"), {
+      type: "bar",
+      data: {
+        labels: {{annual_label | tojson}},
+        datasets: [
+          {
+            label: "Portfolio",
+            backgroundColor: "#3e95cd",
+            data: {{annual_port | tojson}}['포트폴리오'],
+          },
+        ],
+      },
+      scales: {
+      yAxes: [
+        {
+          stacked: true,
+          gridLines: {
+            display: true,
+            color: "rgba(255,99,132,0.2)"
+          },
+          ticks: {
+            suggestedMax: 100,
+            suggestedMin: -10
+          }
+        }
+      ],
+      xAxes: [
+        {
+          gridLines: {
+            display: false
+          }
+        }
+      ]
+    }
+  });
+</script>

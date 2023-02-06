@@ -1,0 +1,59 @@
+<div id="tab_annualReturns" class="tab-content">
+  <div class="my-3 result-section">
+    <!-- Bar Chart -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h5 class="m-0 font-weight-bold text-primary">Annual Return Rate</h5>
+      </div>
+      <div class="card-body">
+        <div class="chart-bar">
+          <canvas id="bar-chart__annual"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .chart-bar {
+    height: auto;
+  }
+</style>
+<script src="static/vendor/chart.js/Chart.min.js"></script>
+<script>
+    new Chart(document.getElementById("bar-chart__annual"), {
+      type: "bar",
+      data: {
+        labels: {{annual_label | tojson}},
+        datasets: [
+          {
+            label: "Portfolio",
+            backgroundColor: "#3e95cd",
+            data: {{annual_port | tojson}},
+          },
+        ],
+      },
+      scales: {
+      yAxes: [
+        {
+          stacked: true,
+          gridLines: {
+            display: true,
+            color: "rgba(255,99,132,0.2)"
+          },
+          ticks: {
+            suggestedMax: 100,
+            suggestedMin: -10
+          }
+        }
+      ],
+      xAxes: [
+        {
+          gridLines: {
+            display: false
+          }
+        }
+      ]
+    }
+  });
+</script>
